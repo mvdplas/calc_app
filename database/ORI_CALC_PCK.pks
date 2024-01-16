@@ -1,36 +1,44 @@
-create or replace package "ORI_CALC_PCK" as
+CREATE OR REPLACE PACKAGE "ORI_CALC_PCK" AS
+    TYPE TR_STANDAARD_URENCALC IS RECORD (
+        MIN_CHARGE_UREN_JR NUMBER,
+        MIN_CHARGE_UREN_MND NUMBER,
+        MAX_CHARGE_UREN_JR NUMBER,
+        MAX_CHARGE_UREN_MND NUMBER
+    );
+ --
+    TYPE TT_STANDAARD_URENCALC IS
+        TABLE OF TR_STANDAARD_URENCALC;
+ --
+    TYPE TR_KOSTPRIJS IS RECORD (
+        MIN_DIR_KOSTPRIJS_MND NUMBER,
+        MIN_GEWENST_TARIEF NUMBER
+    );
+ --
+    TYPE TT_KOSTPRIJS IS
+        TABLE OF TR_KOSTPRIJS;
+ --
+    PROCEDURE STANDAARD_URENCALC (
+        O_MIN_CHARGE_UREN_JR OUT NUMBER,
+        O_MIN_CHARGE_UREN_MND OUT NUMBER,
+        O_MAX_CHARGE_UREN_JR OUT NUMBER,
+        O_MAX_CHARGE_UREN_MND OUT NUMBER
+    );
+ --
+    FUNCTION FN_STANDAARD_URENCALC RETURN TT_STANDAARD_URENCALC PIPELINED;
+ --
+    PROCEDURE KOSTPRIJS(
+        O_MIN_DIR_KOSTPRIJS_MND OUT NUMBER,
+        O_MIN_GEWENST_TARIEF OUT NUMBER
+    );
+ --
+    FUNCTION FN_KOSTPRIJS RETURN TT_KOSTPRIJS PIPELINED;
+ --
+    PROCEDURE BONUSCALC;
 
-type tr_standaard_urencalc is record
-(min_charge_uren_jr   number
-,min_charge_uren_mnd  number
-,max_charge_uren_jr   number
-,max_charge_uren_mnd  number);
---
-type tt_standaard_urencalc is table of tr_standaard_urencalc;
---
-type tr_kostprijs is record
-(min_dir_kostprijs_mnd number
-,min_gewenst_tarief    number);
---
-type tt_kostprijs is table of tr_kostprijs;
---
-procedure standaard_urencalc (o_min_charge_uren_jr  out number
-                             ,o_min_charge_uren_mnd out number
-                             ,o_max_charge_uren_jr  out number
-                             ,o_max_charge_uren_mnd out number);
---
-function fn_standaard_urencalc return tt_standaard_urencalc pipelined;
---
-procedure kostprijs(o_min_dir_kostprijs_mnd out number
-                   ,o_min_gewenst_tarief    out number);
---
-function fn_kostprijs return tt_kostprijs pipelined;
---
-procedure bonuscalc;
-
-procedure mass_book_hours (i_usr_id      in number
-                          ,i_period      in varchar2
-                          ,i_gebeurtenis in varchar2
-                          ,i_uren        in number);
-
-end "ORI_CALC_PCK";
+    PROCEDURE MASS_BOOK_HOURS (
+        I_USR_ID IN NUMBER,
+        I_PERIOD IN VARCHAR2,
+        I_GEBEURTENIS IN VARCHAR2,
+        I_UREN IN NUMBER
+    );
+END "ORI_CALC_PCK";
