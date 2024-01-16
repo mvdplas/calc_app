@@ -1,4 +1,4 @@
-create or replace package body "ORI_CALC_PCK" as
+CREATE OR REPLACE package body "ORI_CALC_PCK" as
 
 procedure standaard_urencalc (o_min_charge_uren_jr  out number
                              ,o_min_charge_uren_mnd out number
@@ -182,5 +182,11 @@ begin
     end if;
   end loop;
 end;
+
+procedure test IS
+BEGIN
+  --This is a test procedure
+  null;
+end test;
 
 end "ORI_CALC_PCK";
