@@ -17,11 +17,8 @@ CREATE OR REPLACE PACKAGE "ORI_CALC_PCK" AS
     TYPE TT_KOSTPRIJS IS
         TABLE OF TR_KOSTPRIJS;
  --
-    type TT_MARCEL is record (
-    id number,
-    name varchar2(100),
-    age number);
-
+ -- test
+ 
     PROCEDURE STANDAARD_URENCALC (
         O_MIN_CHARGE_UREN_JR OUT NUMBER,
         O_MIN_CHARGE_UREN_MND OUT NUMBER,
