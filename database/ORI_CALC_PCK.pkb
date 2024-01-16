@@ -183,10 +183,4 @@ begin
   end loop;
 end;
 
-procedure test IS
-BEGIN
-  --This is a test procedure
-  null;
-end test;
-
 end "ORI_CALC_PCK";
