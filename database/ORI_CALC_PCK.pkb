@@ -37,6 +37,7 @@ procedure standaard_urencalc (o_min_charge_uren_jr  out number
   l_min_charge_uren_mnd   number;
   l_max_charge_uren_jr    number;
   l_max_charge_uren_mnd   number;
+  l_test                  number;
 begin
   open c_par;
   fetch c_par into r_par;
